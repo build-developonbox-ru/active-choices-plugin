@@ -116,7 +116,10 @@ public abstract class AbstractScriptableParameter extends AbstractUnoChoiceParam
 			visibleItemCount = map.size();
 			return map;
 		}
-		LOGGER.warning(String.format("Script parameter with name '%s' is not an instance of java.util.Map. The parameter value is %s", getName(), value));
+		if (LOGGER.isLoggable(Level.FINE)) {
+			LOGGER.fine(String.format("Script parameter with name '%s' is not an instance of java.util.Map. The "
+				+ "parameter value is %s", getName(), value));
+		}
 		return Collections.EMPTY_MAP;
 	}
 	
@@ -180,5 +183,4 @@ public abstract class AbstractScriptableParameter extends AbstractUnoChoiceParam
 			return choicesSize;
 		return DEFAULT_MAX_VISIBLE_ITEM_COUNT;
 	}
-
 }
